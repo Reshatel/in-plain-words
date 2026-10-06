@@ -9,7 +9,10 @@ import { stampDown } from '../fx/stamp.js'
 import { readLocal, writeLocal } from '../storage.js'
 import '../styles/sections/application.css'
 
-const todayIso = () => new Date().toISOString().slice(0, 10)
+const todayIso = () => {
+  const today = new Date()
+  return new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10)
+}
 
 const fieldValidators = {
   name: (value) => (value.trim().length >= 2 ? '' : 'Please tell me your name'),
@@ -76,7 +79,7 @@ const formMarkup = () => `
     <div class="field field--consent" data-field="consent">
       <label class="request__consent">
         <input type="checkbox" name="consent" required />
-        <span>I agree that my data will be used to reply to this request. <a href="/privacy.html" class="marker-link">Privacy, in plain words</a></span>
+        <span>I agree that my data will be used to reply to this request. <a href="./privacy.html" class="marker-link">Privacy, in plain words</a></span>
       </label>
       <p class="field__error hand" data-field-error></p>
     </div>
@@ -170,7 +173,7 @@ export const initApplication = () => {
 
     select('.request__submit', form).disabled = true
     gsap
-      .timeline({ onComplete: () => window.location.assign('/thanks.html') })
+      .timeline({ onComplete: () => window.location.assign('./thanks.html') })
       .add(stampDown(select('[data-request-stamp]', form)))
       .to(form, prefersReducedMotion ? { autoAlpha: 0, duration: 0.3 } : { y: -120, rotation: -3, autoAlpha: 0, duration: 0.6, ease: 'power3.in' }, '+=0.35')
   })

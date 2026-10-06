@@ -7,10 +7,14 @@ let lenis = null
 
 const headerOffset = () => -(document.querySelector('[data-header]')?.offsetHeight ?? 0)
 
+const isReload = () => performance.getEntriesByType('navigation')[0]?.type === 'reload'
+
 export const resetToTop = () => {
+  const entryHash = location.hash && !isReload() ? location.hash : null
   history.scrollRestoration = 'manual'
   if (location.hash) history.replaceState(null, '', location.pathname + location.search)
   window.scrollTo(0, 0)
+  return entryHash
 }
 
 export const startSmoothScroll = () => {
@@ -34,7 +38,8 @@ export const scrollToTarget = (target, { onComplete } = {}) => {
     return
   }
 
-  lenis.scrollTo(target === 0 ? 0 : element, { offset: target === 0 ? 0 : headerOffset(), duration: 1.2, onComplete })
+  lenis.resize()
+  lenis.scrollTo(target === 0 ? 0 : element, { duration: 1.2, onComplete })
 }
 
 export const pauseScroll = () => {

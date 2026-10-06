@@ -183,6 +183,7 @@
 }
 
 .photo {
+  background: var(--folder);
   filter: var(--photo-warmth);
   object-fit: cover;
 }

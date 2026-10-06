@@ -2,11 +2,24 @@
 
 A one-page website for a fictional law office whose whole idea is “legal help without legalese”. Built as a test assignment.
 
+**Live:** https://&lt;your-github-username&gt;.github.io/&lt;repo-name&gt;/
+
 ```bash
 npm install
 npm run dev
 npm run build
+npm run preview
 ```
+
+Requires Node 20.19+ or 22.12+.
+
+## Deploy
+
+The repo ships with `.github/workflows/deploy.yml`: every push to `main` builds the site and publishes `dist` to GitHub Pages. Asset and page links are relative (`base: './'`), so the site works from any sub-path.
+
+1. Create an empty repository on GitHub.
+2. Push this project to its `main` branch.
+3. In the repository: Settings → Pages → Source: **GitHub Actions**.
 
 ## Site plan
 

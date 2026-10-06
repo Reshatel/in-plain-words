@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 const pages = ['index', 'thanks', 'privacy', '404']
 
 export default defineConfig({
+  base: './',
   build: {
     rollupOptions: {
       input: Object.fromEntries(

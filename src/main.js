@@ -18,7 +18,7 @@ import { TextPlugin } from 'gsap/TextPlugin'
 import { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
 
-import { bindAnchorLinks, resetToTop, startSmoothScroll } from './scroll.js'
+import { bindAnchorLinks, resetToTop, scrollToTarget, startSmoothScroll } from './scroll.js'
 import { initSectionTitles } from './sections/section-titles.js'
 import { runPreloader } from './sections/preloader.js'
 import { initHeader } from './sections/header.js'
@@ -38,14 +38,15 @@ import { initNotFound, initPrivacy, initThanks } from './pages/subpages.js'
 
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, Flip, TextPlugin, Draggable, InertiaPlugin)
 
-resetToTop()
+const entryHash = resetToTop()
 
 const bootLanding = () => {
   resetToTop()
   startSmoothScroll()
   bindAnchorLinks()
   initHeader()
-  initHero(runPreloader())
+  const introReady = runPreloader()
+  initHero(introReady)
   initSectionTitles()
   initTranslator()
   initNumbers()
@@ -61,7 +62,10 @@ const bootLanding = () => {
   initThanks()
   initNotFound()
   initPrivacy()
+  if (!entryHash) return
+  introReady.then(() => scrollToTarget(entryHash))
 }
+
 
 document.fonts.ready.then(bootLanding)
 window.addEventListener('load', () => ScrollTrigger.refresh())

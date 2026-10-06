@@ -41,8 +41,16 @@ export const initReviews = () => {
   const layouts = gsap.matchMedia()
 
   layouts.add(media.desktop, () => {
-    hint.textContent = 'Drag the notes around — they don’t mind.'
+    const canDrag = window.matchMedia(media.finePointer).matches
+    hint.textContent = canDrag ? 'Drag the notes around — they don’t mind.' : 'A few words from people I helped.'
     scatterSlots(notes.length).forEach((slot, index) => Object.assign(notes[index].style, { left: `${slot.left}%`, top: `${slot.top}%` }))
+
+    if (!canDrag) return () => {
+      notes.forEach((note) => {
+        note.style.left = ''
+        note.style.top = ''
+      })
+    }
 
     const draggables = Draggable.create(notes, {
       type: 'x,y',

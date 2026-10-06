@@ -10,7 +10,7 @@ export const receiptMarkup = () => `
       <span class="legal">Your estimate</span>
       <strong data-receipt-mini>—</strong>
     </button>
-    <div class="receipt__paper" data-receipt-paper>
+    <div class="receipt__paper" data-receipt-paper data-lenis-prevent>
       <div class="receipt__stub">
         <p class="receipt__brand legal">IN PLAIN WORDS · ESTIMATE No. <span data-receipt-number></span></p>
         <p class="receipt__date legal" data-receipt-date></p>

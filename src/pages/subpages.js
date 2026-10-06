@@ -11,7 +11,7 @@ const summaryRows = (application) =>
     ['Name', application.name],
     ['Topic', application.topic],
     ['Format', application.format],
-    ['Preferred date', application.date && new Date(application.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })]
+    ['Preferred date', application.date && new Date(`${application.date}T00:00`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })]
   ].filter(([, value]) => value)
 
 export const initThanks = () => {

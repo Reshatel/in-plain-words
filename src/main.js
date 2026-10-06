@@ -22,6 +22,10 @@ import { initSectionTitles } from './sections/section-titles.js'
 import { runPreloader } from './sections/preloader.js'
 import { initHeader } from './sections/header.js'
 import { initHero } from './sections/hero.js'
+import { initTranslator } from './sections/translator.js'
+import { initNumbers } from './sections/numbers.js'
+import { initServices } from './sections/services.js'
+import { initProcess } from './sections/process.js'
 
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, Flip, TextPlugin, Draggable, InertiaPlugin)
 
@@ -31,6 +35,10 @@ const bootLanding = () => {
   initHeader()
   initHero(runPreloader())
   initSectionTitles()
+  initTranslator()
+  initNumbers()
+  initServices()
+  initProcess()
 }
 
 document.fonts.ready.then(bootLanding)

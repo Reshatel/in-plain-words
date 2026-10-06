@@ -26,6 +26,9 @@ import { initTranslator } from './sections/translator.js'
 import { initNumbers } from './sections/numbers.js'
 import { initServices } from './sections/services.js'
 import { initProcess } from './sections/process.js'
+import { initCases } from './sections/cases.js'
+import { initDossier } from './sections/dossier.js'
+import { initCalculator } from './calculator/calculator.js'
 
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, Flip, TextPlugin, Draggable, InertiaPlugin)
 
@@ -39,6 +42,9 @@ const bootLanding = () => {
   initNumbers()
   initServices()
   initProcess()
+  initCases()
+  initDossier()
+  initCalculator()
 }
 
 document.fonts.ready.then(bootLanding)

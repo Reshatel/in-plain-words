@@ -4,17 +4,268 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>In Plain Words — Law Firm</title>
-    <meta name="description" content="In Plain Words is a law firm that explains the law in human language and protects your interests." />
+    <title>In Plain Words — Law Office</title>
+    <meta name="description" content="In Plain Words is a law office that explains the law in human language: property, family, business, IT and court cases with a fixed price before we start." />
+    <meta name="theme-color" content="#F4EFE6" />
+    <script>
+      document.documentElement.classList.add('is-booting')
+      try {
+        if (sessionStorage.getItem('inPlainWords.visited')) document.documentElement.classList.add('is-returning')
+      } catch (error) {}
+    </script>
   </head>
   <body>
-    <main id="page">
-      <section class="hero">
+    <div class="preloader" data-preloader aria-hidden="true">
+      <div class="preloader__sheet sheet" data-preloader-sheet>
+        <p class="preloader__line legal" data-preloader-text>Case No. 1. Yours.</p>
+        <span class="stamp preloader__stamp" data-preloader-stamp>In Plain Words</span>
+      </div>
+    </div>
+
+    <header class="site-header" data-header>
+      <div class="container site-header__bar">
+        <a class="logo" href="#top" aria-label="In Plain Words — back to top">
+          <span class="logo__stamp">IPW</span>
+          <span class="logo__name">In Plain Words</span>
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          <a class="site-nav__link marker-link" href="#services">Services</a>
+          <a class="site-nav__link marker-link" href="#cases">Cases</a>
+          <a class="site-nav__link marker-link" href="#about">About</a>
+          <a class="site-nav__link marker-link" href="#pricing">Pricing</a>
+          <a class="site-nav__link marker-link" href="#contact">Contact</a>
+        </nav>
+        <a class="site-header__phone legal marker-link" href="tel:+15550142290">+1 (555) 014-2290</a>
+        <a class="button button--small site-header__cta" href="#contact">Ask a question</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+          <span class="menu-toggle__bars" aria-hidden="true"></span>
+          <span class="visually-hidden">Menu</span>
+        </button>
+      </div>
+      <div class="mobile-menu sheet" id="mobile-menu" data-mobile-menu hidden>
+        <nav class="mobile-menu__nav" aria-label="Mobile">
+          <a class="mobile-menu__link" href="#services" data-menu-item>Services</a>
+          <a class="mobile-menu__link" href="#cases" data-menu-item>Cases</a>
+          <a class="mobile-menu__link" href="#about" data-menu-item>About</a>
+          <a class="mobile-menu__link" href="#pricing" data-menu-item>Pricing</a>
+          <a class="mobile-menu__link" href="#contact" data-menu-item>Contact</a>
+        </nav>
+        <a class="mobile-menu__phone legal" href="tel:+15550142290" data-menu-item>+1 (555) 014-2290</a>
+        <a class="button" href="#contact" data-menu-item>Ask a question</a>
+      </div>
+    </header>
+
+    <main id="page" class="page">
+      <section class="hero" id="top">
+        <div class="container hero__grid">
+          <div class="hero__copy">
+            <p class="hero__legalese legal" data-hero-legalese>The party seeking legal assistance shall not be required to possess specialised knowledge of law, procedure or terminology, such knowledge being the sole responsibility of counsel.</p>
+            <h1 class="hero__title" data-hero-title>You don’t have to speak legalese. <span class="marker" data-hero-marker>That’s my job.</span></h1>
+            <p class="hero__lead" data-hero-lead>Property, family, business and court matters — explained in plain words, with a fixed price before we start.</p>
+            <div class="hero__actions" data-hero-actions>
+              <a class="button" href="#pricing">See the price</a>
+              <a class="button button--ghost" href="#contact">Book a consultation</a>
+              <div class="hero__note" data-hero-note>
+                <span class="hand">it takes 2 minutes</span>
+                <svg class="scribble hero__arrow" viewBox="0 0 120 80" aria-hidden="true" fill="none">
+                  <path d="M112 18 C 84 6, 46 52, 12 44" />
+                  <path d="M28 30 L 11 44 L 30 58" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="hero__desk" data-hero-desk>
+            <div class="hero__layer hero__sheet hero__sheet--back sheet" data-depth="0.25"></div>
+            <div class="hero__layer hero__sheet hero__sheet--middle sheet sheet--ruled" data-depth="0.45">
+              <p class="legal">Consultation record</p>
+              <p class="legal">Client: you</p>
+              <p class="legal">Problem: explained in your own words</p>
+              <p class="legal">Price: agreed before we start</p>
+            </div>
+            <figure class="hero__layer hero__photo sheet" data-depth="0.7">
+              <img class="photo" data-photo="lawyer" alt="Anna Holt, attorney at In Plain Words" width="720" height="900" />
+              <figcaption class="hand">Anna Holt, attorney</figcaption>
+              <svg class="paperclip hero__clip" viewBox="0 0 40 110" aria-hidden="true" fill="none">
+                <path d="M12 24 V84 a12 12 0 0 0 24 0 V16 a9 9 0 0 0 -18 0 V78 a5 5 0 0 0 10 0 V28" />
+              </svg>
+            </figure>
+            <p class="hero__layer hero__sticker sticker hand" data-depth="1">First 15 min free</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section translator" id="translator" aria-labelledby="translator-title">
         <div class="container">
-          <h1 class="hero__title">You don’t have to understand legal language. That’s my job.</h1>
+          <header class="section-head translator__head">
+            <p class="section-kicker">§ 1 · Legalese translator</p>
+            <h2 class="section-title" id="translator-title">Six scary words, translated</h2>
+            <p class="section-lead">Lawyers love long words. Tap a card to see what each one really means for you.</p>
+            <button class="button button--ghost translator__all" type="button" data-translate-all>Translate all</button>
+          </header>
+          <ul class="term-grid" data-term-grid></ul>
+        </div>
+      </section>
+
+      <section class="section numbers" id="numbers" aria-labelledby="numbers-title">
+        <div class="container">
+          <header class="section-head">
+            <p class="section-kicker">§ 2 · On record</p>
+            <h2 class="section-title" id="numbers-title">The file so far</h2>
+          </header>
+          <ul class="numbers__board" data-numbers></ul>
+        </div>
+      </section>
+
+      <section class="section services" id="services" aria-labelledby="services-title">
+        <div class="container">
+          <header class="section-head">
+            <p class="section-kicker">§ 3 · Services</p>
+            <h2 class="section-title" id="services-title">What I can help with</h2>
+            <p class="section-lead">Official names on the left of the desk, what they mean on the right. Pick a folder.</p>
+          </header>
+          <div class="folder" data-folder>
+            <div class="folder__tabs" role="tablist" aria-label="Practice areas" data-folder-tabs></div>
+            <div class="folder__body" data-folder-body>
+              <article class="folder__sheet sheet" role="tabpanel" data-folder-sheet></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section process" id="process" aria-labelledby="process-title">
+        <div class="container">
+          <header class="section-head">
+            <p class="section-kicker">§ 4 · How it works</p>
+            <h2 class="section-title" id="process-title">Four steps, no surprises</h2>
+          </header>
+          <div class="process__track" data-process>
+            <svg class="process__path process__path--wide" viewBox="0 0 1000 220" preserveAspectRatio="none" aria-hidden="true" fill="none">
+              <defs>
+                <mask id="process-mask-wide" maskUnits="userSpaceOnUse">
+                  <path class="process__reveal" d="M20 120 C 140 20, 230 200, 360 110 S 560 30, 640 120 S 860 210, 980 90" data-process-reveal />
+                </mask>
+              </defs>
+              <path class="process__dash" d="M20 120 C 140 20, 230 200, 360 110 S 560 30, 640 120 S 860 210, 980 90" mask="url(#process-mask-wide)" />
+            </svg>
+            <svg class="process__path process__path--tall" viewBox="0 0 80 1000" preserveAspectRatio="none" aria-hidden="true" fill="none">
+              <defs>
+                <mask id="process-mask-tall" maskUnits="userSpaceOnUse">
+                  <path class="process__reveal" d="M40 10 C 10 160, 70 300, 40 480 S 10 800, 40 990" data-process-reveal />
+                </mask>
+              </defs>
+              <path class="process__dash" d="M40 10 C 10 160, 70 300, 40 480 S 10 800, 40 990" mask="url(#process-mask-tall)" />
+            </svg>
+            <ol class="process__steps" data-process-steps></ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="section cases" id="cases" aria-labelledby="cases-title">
+        <div class="container">
+          <header class="section-head">
+            <p class="section-kicker">§ 5 · Closed cases</p>
+            <h2 class="section-title" id="cases-title">From the archive</h2>
+            <p class="section-lead">Names changed, numbers real. Open a folder to read how it went.</p>
+          </header>
+          <div class="cases__filters" role="group" aria-label="Filter cases by practice" data-case-filters></div>
+          <ul class="cases__grid" data-case-grid></ul>
+        </div>
+      </section>
+
+      <section class="section dossier" id="about" aria-labelledby="about-title">
+        <div class="container">
+          <header class="section-head">
+            <p class="section-kicker">§ 6 · Lawyer’s file</p>
+            <h2 class="section-title" id="about-title">Who will handle your case</h2>
+          </header>
+          <div class="dossier__layout" data-dossier></div>
+        </div>
+      </section>
+
+      <section class="section calculator" id="pricing" aria-labelledby="pricing-title">
+        <div class="container">
+          <header class="section-head">
+            <p class="section-kicker">§ 7 · Pricing</p>
+            <h2 class="section-title" id="pricing-title">Know the price before you call</h2>
+            <p class="section-lead">Four questions, an honest estimate. The receipt updates as you go.</p>
+          </header>
+          <div class="calculator__layout" data-calculator></div>
+        </div>
+      </section>
+
+      <section class="section reviews" id="reviews" aria-labelledby="reviews-title">
+        <div class="container">
+          <header class="section-head">
+            <p class="section-kicker">§ 8 · Notes from clients</p>
+            <h2 class="section-title" id="reviews-title">Left on my desk</h2>
+            <p class="section-lead reviews__hint" data-reviews-hint>Drag the notes around — they don’t mind.</p>
+          </header>
+          <div class="reviews__desk" data-reviews-desk></div>
+        </div>
+      </section>
+
+      <section class="section faq" id="faq" aria-labelledby="faq-title">
+        <div class="container faq__layout">
+          <header class="section-head">
+            <p class="section-kicker">§ 9 · Questions</p>
+            <h2 class="section-title" id="faq-title">Asked before you</h2>
+          </header>
+          <div class="faq__list" data-faq></div>
+        </div>
+      </section>
+
+      <section class="section application" id="contact" aria-labelledby="contact-title">
+        <div class="container application__layout">
+          <header class="section-head application__head">
+            <p class="section-kicker">§ 10 · Contact</p>
+            <h2 class="section-title" id="contact-title">Tell me what happened</h2>
+            <p class="section-lead">I reply within 2 hours on working days. The first 15 minutes of the consultation are free.</p>
+            <ul class="application__contacts legal">
+              <li><a class="marker-link" href="tel:+15550142290">+1 (555) 014-2290</a></li>
+              <li><a class="marker-link" href="mailto:hello@inplainwords.law">hello@inplainwords.law</a></li>
+              <li>14 Paper Lane, Suite 3, Springfield</li>
+              <li>Mon–Sat, 9:00–19:00</li>
+            </ul>
+          </header>
+          <div data-application></div>
         </div>
       </section>
     </main>
+
+    <footer class="site-footer" data-footer>
+      <div class="container site-footer__inner">
+        <div class="site-footer__top">
+          <div class="site-footer__contacts">
+            <p class="legal">Write or call</p>
+            <a class="site-footer__link" href="tel:+15550142290">+1 (555) 014-2290</a>
+            <a class="site-footer__link" href="mailto:hello@inplainwords.law">hello@inplainwords.law</a>
+            <p class="legal site-footer__muted">14 Paper Lane, Suite 3, Springfield · Mon–Sat, 9:00–19:00</p>
+          </div>
+          <nav class="site-footer__nav" aria-label="Footer">
+            <a class="site-footer__link" href="#services">Services</a>
+            <a class="site-footer__link" href="#pricing">Pricing</a>
+            <a class="site-footer__link" href="/privacy.html">Privacy</a>
+            <button class="site-footer__top-button legal" type="button" data-back-to-top>Back to top ↑</button>
+          </nav>
+        </div>
+        <div class="site-footer__brand">
+          <p class="site-footer__word" data-footer-word>In Plain Words</p>
+          <svg class="scribble site-footer__underline" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true" fill="none">
+            <path d="M10 24 C 200 8, 420 34, 620 18 S 900 12, 990 26" data-footer-underline />
+          </svg>
+        </div>
+        <p class="site-footer__disclaimer legal">Fictional law office, built as a test assignment. © 2026</p>
+      </div>
+    </footer>
+
+    <div class="case-modal" data-case-modal hidden>
+      <div class="case-modal__backdrop" data-case-close></div>
+      <article class="case-modal__sheet sheet" role="dialog" aria-modal="true" aria-labelledby="case-modal-title" data-case-sheet>
+        <button class="case-modal__close" type="button" aria-label="Close case" data-case-close>×</button>
+        <div data-case-content></div>
+      </article>
+    </div>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

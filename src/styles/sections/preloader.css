@@ -1,0 +1,31 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  background: var(--ink);
+}
+
+.is-returning .preloader {
+  display: none;
+}
+
+.preloader__sheet {
+  display: grid;
+  gap: 28px;
+  justify-items: start;
+  width: min(420px, 100%);
+  padding: 40px 36px 48px;
+}
+
+.preloader__line {
+  min-height: 1.7em;
+  font-size: clamp(18px, 2.4vw, 22px);
+}
+
+.preloader__stamp {
+  justify-self: end;
+  font-size: 18px;
+}

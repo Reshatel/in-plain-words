@@ -6,6 +6,7 @@ import '@fontsource/caveat/600.css'
 import 'lenis/dist/lenis.css'
 import './styles/tokens.css'
 import './styles/base.css'
+import './styles/components.css'
 
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -15,38 +16,21 @@ import { Flip } from 'gsap/Flip'
 import { TextPlugin } from 'gsap/TextPlugin'
 import { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
-import Lenis from 'lenis'
 
-import { motion } from './config.js'
+import { bindAnchorLinks, startSmoothScroll } from './scroll.js'
+import { initSectionTitles } from './sections/section-titles.js'
+import { runPreloader } from './sections/preloader.js'
+import { initHeader } from './sections/header.js'
+import { initHero } from './sections/hero.js'
 
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, Flip, TextPlugin, Draggable, InertiaPlugin)
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-const startSmoothScroll = () => {
-  if (prefersReducedMotion) return
-
-  const lenis = new Lenis()
-  lenis.on('scroll', ScrollTrigger.update)
-  gsap.ticker.add((time) => lenis.raf(time * 1000))
-  gsap.ticker.lagSmoothing(0)
+const bootLanding = () => {
+  startSmoothScroll()
+  bindAnchorLinks()
+  initHeader()
+  initHero(runPreloader())
+  initSectionTitles()
 }
 
-const revealHeroTitle = () => {
-  if (!document.querySelector('.hero__title')) return
-
-  SplitText.create('.hero__title', {
-    type: 'words',
-    mask: 'words',
-    onSplit: (self) =>
-      gsap.from(self.words, {
-        yPercent: 100,
-        duration: motion.duration,
-        ease: motion.ease,
-        stagger: motion.stagger
-      })
-  })
-}
-
-startSmoothScroll()
-document.fonts.ready.then(revealHeroTitle)
+document.fonts.ready.then(bootLanding)

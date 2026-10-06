@@ -1,4 +1,3 @@
-import { gsap } from 'gsap'
 import { motion, photos } from '../config.js'
 import { associates, lawyerFile } from '../data/dossier.js'
 import { escapeHtml, select, selectAll } from '../dom.js'
@@ -75,5 +74,4 @@ export const initDossier = () => {
     .add(stampDown(select('[data-dossier-stamp]', root)), '-=0.3')
     .add(paperIn(selectAll('[data-associate]', root), { stagger: motion.stagger * 2 }), '-=0.8')
 
-  gsap.set(values, { minHeight: '1.6em' })
 }

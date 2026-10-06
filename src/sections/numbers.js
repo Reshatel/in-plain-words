@@ -12,7 +12,7 @@ import '../styles/sections/numbers.css'
 const statMarkup = ({ value, unit, label, note }) => `
   <li class="stat">
     <div class="stat__sticker sticker" data-stat-sticker>
-      <p class="stat__value"><span data-stat-count="${value}">${value}</span> <span class="stat__unit">${escapeHtml(unit)}</span></p>
+      <p class="stat__value"><span class="stat__count" style="--digits: ${String(value).length}" data-stat-count="${value}">${value}</span> <span class="stat__unit">${escapeHtml(unit)}</span></p>
       <p class="stat__label">${escapeHtml(label)}</p>
     </div>
     <p class="stat__note" data-stat-note>

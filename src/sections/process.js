@@ -38,8 +38,10 @@ const buildScrubbedPath = (track, reveal, steps) => {
         scrub: 1,
         onUpdate: (self) => {
           arrivals.forEach((arrival, index) => {
-            if (self.progress < arrival || stickers[index].progress() > 0) return
-            stickers[index].play()
+            const sticker = stickers[index]
+            const arrived = self.progress >= arrival
+            if (arrived === !sticker.reversed() && sticker.progress() > 0) return
+            arrived ? sticker.play() : sticker.reverse()
           })
         }
       }

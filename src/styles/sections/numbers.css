@@ -19,10 +19,17 @@
 }
 
 .stat__value {
+  white-space: nowrap;
   font-family: var(--font-display);
   font-size: clamp(44px, 5vw, 68px);
   font-weight: 600;
   line-height: 1;
+}
+
+.stat__count {
+  display: inline-block;
+  min-width: calc(var(--digits) * 0.62em);
+  font-variant-numeric: tabular-nums;
 }
 
 .stat__unit {

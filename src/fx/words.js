@@ -13,6 +13,8 @@ export const revealWords = (element, vars = {}) => {
 }
 
 export const typeText = (element, text, vars = {}) => {
+  element.style.minHeight = `${element.getBoundingClientRect().height}px`
+
   if (prefersReducedMotion) {
     element.textContent = text
     return gsap.fromTo(element, { autoAlpha: 0 }, { autoAlpha: 1, duration: motion.fadeDuration, ...vars })

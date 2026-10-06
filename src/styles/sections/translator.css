@@ -14,9 +14,9 @@
 
 .term-card__inner {
   position: relative;
-  display: grid;
+  display: block;
   width: 100%;
-  min-height: 260px;
+  height: max(var(--term-height, 260px), 220px);
   padding: 0;
   border: 0;
   background: none;
@@ -25,7 +25,8 @@
 }
 
 .term-card__face {
-  grid-area: 1 / 1;
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -36,7 +37,6 @@
 
 .term-card__face--back {
   transform: rotateY(180deg);
-  background: #FFFDF6;
 }
 
 .term-card__label {
@@ -82,9 +82,5 @@
 @media (max-width: 620px) {
   .term-grid {
     grid-template-columns: 1fr;
-  }
-
-  .term-card__inner {
-    min-height: 230px;
   }
 }

@@ -33,6 +33,7 @@ import { initReviews } from './sections/reviews.js'
 import { initFaq } from './sections/faq.js'
 import { initApplication } from './sections/application.js'
 import { initFooter } from './sections/footer.js'
+import { initNotFound, initPrivacy, initThanks } from './pages/subpages.js'
 
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, Flip, TextPlugin, Draggable, InertiaPlugin)
 
@@ -53,6 +54,9 @@ const bootLanding = () => {
   initFaq()
   initApplication()
   initFooter()
+  initThanks()
+  initNotFound()
+  initPrivacy()
 }
 
 document.fonts.ready.then(bootLanding)

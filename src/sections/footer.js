@@ -15,7 +15,7 @@ export const initFooter = () => {
   const underline = select('[data-footer-underline]', footer)
   if (!word || prefersReducedMotion) return
 
-  const split = SplitText.create(word, { type: 'chars', mask: 'chars' })
+  const split = SplitText.create(word, { type: 'chars', mask: 'chars', charsClass: 'char' })
   const page = select('#page')
 
   gsap

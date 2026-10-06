@@ -94,6 +94,7 @@ h4 {
 .page {
   position: relative;
   z-index: 1;
+  overflow-x: clip;
   background: var(--paper);
 }
 
@@ -130,6 +131,12 @@ h4 {
 .is-booting .hero__desk {
   visibility: hidden;
   animation: boot-fallback 0s 3s forwards;
+}
+
+.word-mask,
+.char-mask {
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
 }
 
 @keyframes boot-fallback {

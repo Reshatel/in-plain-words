@@ -12,7 +12,6 @@ export const initHeader = () => {
 
   const toggle = select('[data-menu-toggle]', header)
   const menu = select('[data-mobile-menu]', header)
-  const menuItems = selectAll('[data-menu-item]', menu)
   let menuOpen = false
 
   ScrollTrigger.create({
@@ -25,6 +24,10 @@ export const initHeader = () => {
       header.classList.toggle('is-hidden', offset > headerScroll.revealOffset && self.direction === 1)
     }
   })
+
+  if (!toggle || !menu) return
+
+  const menuItems = selectAll('[data-menu-item]', menu)
 
   const openMenu = () => {
     menuOpen = true

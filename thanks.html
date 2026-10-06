@@ -5,9 +5,53 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thank you — In Plain Words</title>
+    <meta name="description" content="Your consultation request has been received." />
+    <meta name="theme-color" content="#F4EFE6" />
+    <meta name="robots" content="noindex" />
   </head>
   <body>
-    <main id="page"></main>
+    <header class="site-header" data-header>
+      <div class="container site-header__bar">
+        <a class="logo" href="/" aria-label="In Plain Words — main page">
+          <span class="logo__stamp">IPW</span>
+          <span class="logo__name">In Plain Words</span>
+        </a>
+        <a class="button button--small button--ghost subpage__back" href="/">← Main page</a>
+      </div>
+    </header>
+
+    <main id="page" class="page subpage">
+      <section class="container subpage__section">
+        <article class="subpage__sheet sheet thanks" data-thanks>
+          <p class="legal subpage__kicker">Form No. 1 · Consultation request</p>
+          <h1 class="subpage__title" data-thanks-title>Thank you. Your request is on my desk.</h1>
+          <p class="subpage__lead">I will call you back within 2 hours on working days. If it is urgent, call <a class="marker-link" href="tel:+15550142290">+1 (555) 014-2290</a>.</p>
+          <dl class="thanks__summary legal" data-thanks-summary hidden></dl>
+          <div class="thanks__estimate" data-thanks-estimate hidden></div>
+          <span class="stamp thanks__stamp" data-thanks-stamp>Received</span>
+          <a class="button" href="/">Back to the main page</a>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer site-footer--compact" data-footer>
+      <div class="container site-footer__inner">
+        <div class="site-footer__top">
+          <div class="site-footer__contacts">
+            <p class="legal">Write or call</p>
+            <a class="site-footer__link" href="tel:+15550142290">+1 (555) 014-2290</a>
+            <a class="site-footer__link" href="mailto:hello@inplainwords.law">hello@inplainwords.law</a>
+          </div>
+          <nav class="site-footer__nav" aria-label="Footer">
+            <a class="site-footer__link" href="/#services">Services</a>
+            <a class="site-footer__link" href="/#pricing">Pricing</a>
+            <a class="site-footer__link" href="/privacy.html">Privacy</a>
+          </nav>
+        </div>
+        <p class="site-footer__disclaimer legal">Fictional law office, built as a test assignment. © 2026</p>
+      </div>
+    </footer>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

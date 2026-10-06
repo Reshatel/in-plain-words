@@ -8,7 +8,7 @@ export const revealWords = (element, vars = {}) => {
     return gsap.fromTo(element, { autoAlpha: 0 }, { autoAlpha: 1, duration: motion.fadeDuration, ...vars })
   }
 
-  const split = SplitText.create(element, { type: 'words', mask: 'words' })
+  const split = SplitText.create(element, { type: 'words', mask: 'words', wordsClass: 'word' })
   return gsap.from(split.words, { yPercent: 100, duration: motion.duration, ease: motion.ease, stagger: motion.stagger, ...vars })
 }
 

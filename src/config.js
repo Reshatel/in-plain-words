@@ -52,9 +52,9 @@ export const pricingRules = {
 }
 
 export const preloaderTiming = {
-  typing: 0.6,
+  typing: 0.5,
   hold: 0.15,
-  exit: 0.5
+  exit: 0.4
 }
 
 export const headerScroll = {

@@ -29,6 +29,10 @@ import { initProcess } from './sections/process.js'
 import { initCases } from './sections/cases.js'
 import { initDossier } from './sections/dossier.js'
 import { initCalculator } from './calculator/calculator.js'
+import { initReviews } from './sections/reviews.js'
+import { initFaq } from './sections/faq.js'
+import { initApplication } from './sections/application.js'
+import { initFooter } from './sections/footer.js'
 
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, Flip, TextPlugin, Draggable, InertiaPlugin)
 
@@ -45,6 +49,10 @@ const bootLanding = () => {
   initCases()
   initDossier()
   initCalculator()
+  initReviews()
+  initFaq()
+  initApplication()
+  initFooter()
 }
 
 document.fonts.ready.then(bootLanding)

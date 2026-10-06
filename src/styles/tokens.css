@@ -1,0 +1,23 @@
+:root {
+  --paper: #F4EFE6;
+  --sheet: #FCFAF5;
+  --ink: #1C2541;
+  --ink-soft: #5B6378;
+  --marker: #FFD84D;
+  --stamp: #C8382E;
+  --folder: #E3D3B4;
+  --line: rgba(28, 37, 65, 0.14);
+
+  --font-display: 'Literata', Georgia, serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+  --font-legal: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-hand: 'Caveat', cursive;
+
+  --container: 1240px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --section-space: clamp(80px, 12vw, 160px);
+
+  --radius-sheet: 4px;
+  --radius-pill: 999px;
+  --shadow-sheet: 0 1px 2px rgba(28, 37, 65, 0.06), 0 12px 32px -12px rgba(28, 37, 65, 0.18);
+}

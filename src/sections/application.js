@@ -3,7 +3,7 @@ import { motion, storageKeys } from '../config.js'
 import { consultationTopics, meetingFormats } from '../data/application.js'
 import { escapeHtml, select, selectAll } from '../dom.js'
 import { prefersReducedMotion } from '../fx/motion-mode.js'
-import { paperIn, shakeSheet } from '../fx/paper.js'
+import { paperIn } from '../fx/paper.js'
 import { revealTimeline } from '../fx/reveal.js'
 import { stampDown } from '../fx/stamp.js'
 import { readLocal, writeLocal } from '../storage.js'
@@ -114,7 +114,6 @@ export const initApplication = () => {
     field.classList.toggle('is-invalid', Boolean(message))
     error.textContent = message
     if (!message) return
-    shakeSheet(field)
     if (prefersReducedMotion) return
     gsap.fromTo(error, { autoAlpha: 0, y: -6 }, { autoAlpha: 1, y: 0, duration: 0.3 })
   }
@@ -172,7 +171,7 @@ export const initApplication = () => {
     select('.request__submit', form).disabled = true
     gsap
       .timeline({ onComplete: () => window.location.assign('/thanks.html') })
-      .add(stampDown(select('[data-request-stamp]', form), form))
+      .add(stampDown(select('[data-request-stamp]', form)))
       .to(form, prefersReducedMotion ? { autoAlpha: 0, duration: 0.3 } : { y: -120, rotation: -3, autoAlpha: 0, duration: 0.6, ease: 'power3.in' }, '+=0.35')
   })
 

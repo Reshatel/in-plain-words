@@ -8,10 +8,6 @@
   background: var(--ink);
 }
 
-.is-returning .preloader {
-  display: none;
-}
-
 .preloader__sheet {
   display: grid;
   gap: 28px;

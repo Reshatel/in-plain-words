@@ -24,12 +24,29 @@ const sheetMarkup = (practice) => `
     <button class="button" type="button" data-estimate="${practice.situationId}">Estimate</button>
   </div>`
 
-const playStrike = (sheet) =>
+const prepareStrike = (sheet) =>
   gsap
-    .timeline()
+    .timeline({ paused: true })
     .add(strikeThrough(select('[data-official]', sheet)))
     .add(revealWords(select('[data-human]', sheet)), '-=0.1')
     .fromTo(selectAll('.folder__item, .folder__footer', sheet), { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.05 }, '-=0.5')
+
+const lockTallestSheet = (sheet) => {
+  const probe = sheet.cloneNode(false)
+  probe.removeAttribute('id')
+  probe.removeAttribute('data-folder-sheet')
+  probe.setAttribute('aria-hidden', 'true')
+  Object.assign(probe.style, { position: 'absolute', visibility: 'hidden', width: `${sheet.offsetWidth}px`, minHeight: '0', transform: 'none' })
+  sheet.parentElement.append(probe)
+  const tallest = Math.max(
+    ...practices.map((practice) => {
+      probe.innerHTML = sheetMarkup(practice)
+      return probe.offsetHeight
+    })
+  )
+  probe.remove()
+  sheet.style.minHeight = `${tallest}px`
+}
 
 export const initServices = () => {
   const folder = select('[data-folder]')
@@ -60,19 +77,21 @@ export const initServices = () => {
     })
     sheet.setAttribute('aria-labelledby', `practice-tab-${practiceId}`)
 
+    let strike = null
     switching?.kill()
     switching = gsap
       .timeline()
       .to(sheet, prefersReducedMotion ? { autoAlpha: 0, duration: 0.2 } : { y: -50, rotation: 2, autoAlpha: 0, duration: 0.3, ease: 'power2.in' })
       .call(() => {
         sheet.innerHTML = sheetMarkup(practice)
+        strike = prepareStrike(sheet)
       })
       .fromTo(
         sheet,
         prefersReducedMotion ? { autoAlpha: 0 } : { y: -70, rotation: -3, autoAlpha: 0 },
         prefersReducedMotion ? { autoAlpha: 1, duration: 0.3 } : { y: 0, rotation: 0, autoAlpha: 1, duration: 0.6, ease: motion.paperEase }
       )
-      .add(() => playStrike(sheet), '-=0.2')
+      .add(() => strike.play(), '-=0.2')
   }
 
   tabList.addEventListener('click', (event) => {
@@ -102,8 +121,16 @@ export const initServices = () => {
     ? gsap.fromTo(sheet, { autoAlpha: 0 }, { autoAlpha: 1, duration: motion.fadeDuration })
     : gsap.fromTo(sheet, { rotationX: -75, autoAlpha: 0, transformOrigin: '50% 100%' }, { rotationX: 0, autoAlpha: 1, duration: 1, ease: motion.ease })
 
+  lockTallestSheet(sheet)
+  let pendingResize = null
+  window.addEventListener('resize', () => {
+    pendingResize?.kill()
+    pendingResize = gsap.delayedCall(0.2, lockTallestSheet, [sheet])
+  })
+  const firstStrike = prepareStrike(sheet)
+
   revealTimeline(folder)
     .fromTo(tabs, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.05 })
     .add(opening, 0.1)
-    .add(() => playStrike(sheet), '-=0.3')
+    .add(() => firstStrike.play(), '-=0.3')
 }

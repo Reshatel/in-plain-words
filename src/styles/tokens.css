@@ -10,9 +10,9 @@
   --line: rgba(28, 37, 65, 0.14);
   --on-ink: #F4EFE6;
 
-  --font-display: 'Literata', Georgia, serif;
-  --font-body: 'Manrope', system-ui, sans-serif;
-  --font-legal: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-legal: 'JetBrains Mono', ui-monospace, monospace;
   --font-hand: 'Caveat', cursive;
 
   --container: 1240px;

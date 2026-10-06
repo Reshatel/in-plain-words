@@ -26,7 +26,7 @@ npm run build
 | `404.html` | “This page isn’t in the file” with a DENIED stamp |
 
 **Landing structure.**
-0. Preloader — “Case No. 1. Yours.” is typed, stamped and flown away (first visit per session).
+0. Preloader — “Case No. 1. Yours.” is typed, stamped and flown away on every load.
 1. Header — stamp logo, anchors, phone, “Ask a question”, hides on scroll down.
 2. Hero — legalese gets struck through, the human headline appears, CTAs “See the price” and “Book a consultation”.
 3. Legalese translator — six flip cards: term → one plain sentence + real-life example.
@@ -41,7 +41,7 @@ npm run build
 12. Consultation request — validated form, stamped “RECEIVED”, then `thanks.html`.
 13. Footer — huge brand name that scrubs in, contacts, back to top.
 
-**Stack.** Vite (multi-page build), vanilla JS modules, GSAP 3 (ScrollTrigger, SplitText, DrawSVG, Flip, TextPlugin, Draggable, Inertia), Lenis smooth scroll, Fontsource fonts (Literata, Manrope, IBM Plex Mono, Caveat). Photos from Unsplash, everything else is CSS and inline SVG.
+**Stack.** Vite (multi-page build), vanilla JS modules, GSAP 3 (ScrollTrigger, SplitText, DrawSVG, Flip, TextPlugin, Draggable, Inertia), Lenis smooth scroll, Fontsource fonts (Plus Jakarta Sans, JetBrains Mono, Caveat). Photos from Unsplash, everything else is CSS and inline SVG.
 
 ## Code map
 

@@ -7,10 +7,17 @@ let lenis = null
 
 const headerOffset = () => -(document.querySelector('[data-header]')?.offsetHeight ?? 0)
 
+export const resetToTop = () => {
+  history.scrollRestoration = 'manual'
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search)
+  window.scrollTo(0, 0)
+}
+
 export const startSmoothScroll = () => {
   if (prefersReducedMotion) return
 
   lenis = new Lenis()
+  lenis.scrollTo(0, { immediate: true })
   lenis.on('scroll', ScrollTrigger.update)
   gsap.ticker.add((time) => lenis.raf(time * 1000))
   gsap.ticker.lagSmoothing(0)
@@ -51,6 +58,5 @@ export const bindAnchorLinks = () => {
 
     event.preventDefault()
     scrollToTarget(hash)
-    history.replaceState(null, '', hash)
   })
 }

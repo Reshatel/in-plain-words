@@ -17,5 +17,3 @@ const write = (store, key, value) => {
 
 export const readLocal = (key) => read(window.localStorage, key)
 export const writeLocal = (key, value) => write(window.localStorage, key, value)
-export const readSession = (key) => read(window.sessionStorage, key)
-export const writeSession = (key, value) => write(window.sessionStorage, key, value)

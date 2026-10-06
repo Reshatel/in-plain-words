@@ -1,8 +1,8 @@
 import { gsap } from 'gsap'
 import { Flip } from 'gsap/Flip'
 import { motion } from '../config.js'
-import { closedCases } from '../data/cases.js'
-import { practiceLabel, practices } from '../data/practices.js'
+import { caseCategories, caseCategoryLabel, closedCases } from '../data/cases.js'
+import { practiceLabel } from '../data/practices.js'
 import { escapeHtml, select, selectAll } from '../dom.js'
 import { prefersReducedMotion } from '../fx/motion-mode.js'
 import { paperIn } from '../fx/paper.js'
@@ -15,12 +15,12 @@ const filterMarkup = ({ id, label }, index) =>
   `<button class="cases__filter" type="button" aria-pressed="${index === 0}" data-case-filter="${id}">${escapeHtml(label)}</button>`
 
 const caseFolderMarkup = (entry) => `
-  <li class="case-folder" data-case-folder data-practice="${entry.practiceId}">
+  <li class="case-folder" data-case-folder data-category="${entry.categoryId}">
     <button class="case-folder__open" type="button" aria-haspopup="dialog" data-case-open="${entry.id}">
       <span class="case-folder__tab legal">No. ${entry.number}</span>
       <span class="case-folder__sheet sheet" data-flip-id="${entry.id}" data-case-preview></span>
       <span class="case-folder__cover" data-case-cover>
-        <span class="case-folder__practice legal">${escapeHtml(practiceLabel(entry.practiceId))}</span>
+        <span class="case-folder__practice legal">${escapeHtml(caseCategoryLabel(entry.categoryId))} · ${escapeHtml(practiceLabel(entry.practiceId))}</span>
         <span class="case-folder__situation">${escapeHtml(entry.situation)}</span>
         <span class="case-folder__result">${escapeHtml(entry.result)}</span>
         <span class="case-folder__more legal">Open the file →</span>
@@ -70,6 +70,7 @@ const initCaseModal = (grid) => {
     const preview = select('[data-case-preview]', trigger)
     returnFocus = trigger
     content.innerHTML = caseStoryMarkup(entry)
+    gsap.set(select('.case-modal__stamp', content), { autoAlpha: 0 })
     sheet.dataset.flipId = entry.id
     pauseScroll()
 
@@ -86,8 +87,8 @@ const initCaseModal = (grid) => {
       }
 
       Flip.from(state, { targets: sheet, duration: 0.65, ease: 'power3.inOut', scale: true })
-      gsap.fromTo(content.children, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.06, delay: 0.45 })
-      stampDown(select('.case-modal__stamp', content), sheet).delay(0.9)
+      gsap.fromTo(selectAll(':scope > :not(.case-modal__stamp)', content), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.06, delay: 0.45 })
+      stampDown(select('.case-modal__stamp', content)).delay(0.9)
     }
 
     if (prefersReducedMotion) {
@@ -119,8 +120,7 @@ export const initCases = () => {
   if (!grid) return
 
   const filterBar = select('[data-case-filters]')
-  const practiceIds = new Set(closedCases.map((entry) => entry.practiceId))
-  const filters = [{ id: 'all', label: 'All' }, ...practices.filter((practice) => practiceIds.has(practice.id)).map(({ id, tab }) => ({ id, label: tab }))]
+  const filters = [{ id: 'all', label: 'All' }, ...caseCategories]
 
   filterBar.innerHTML = filters.map(filterMarkup).join('')
   grid.innerHTML = closedCases.map(caseFolderMarkup).join('')
@@ -128,13 +128,22 @@ export const initCases = () => {
   const folders = selectAll('[data-case-folder]', grid)
   const filterButtons = selectAll('[data-case-filter]', filterBar)
 
-  const applyFilter = (practiceId) => {
-    const state = Flip.getState(folders)
-    filterButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.caseFilter === practiceId)))
-    folders.forEach((folder) => folder.classList.toggle('is-filtered-out', practiceId !== 'all' && folder.dataset.practice !== practiceId))
+  let activeFlip = null
 
-    Flip.from(state, {
-      duration: prefersReducedMotion ? 0 : 0.6,
+  const applyFilter = (categoryId) => {
+    const duration = prefersReducedMotion ? 0 : 0.6
+    const previousHeight = grid.offsetHeight
+    activeFlip?.progress(1)
+    gsap.killTweensOf(grid)
+    grid.style.height = ''
+    const state = Flip.getState(folders)
+    filterButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.caseFilter === categoryId)))
+    folders.forEach((folder) => folder.classList.toggle('is-filtered-out', categoryId !== 'all' && folder.dataset.category !== categoryId))
+    const nextHeight = grid.offsetHeight
+
+    gsap.fromTo(grid, { height: previousHeight }, { height: nextHeight, duration, ease: 'power2.inOut', clearProps: 'height', overwrite: true })
+    activeFlip = Flip.from(state, {
+      duration,
       ease: 'power2.inOut',
       absolute: true,
       onEnter: (entering) => gsap.fromTo(entering, { autoAlpha: 0, scale: 0.9 }, { autoAlpha: 1, scale: 1, duration: 0.4 }),
@@ -148,9 +157,10 @@ export const initCases = () => {
     applyFilter(button.dataset.caseFilter)
   })
 
-  const stamps = folders.map((folder) => stampDown(select('[data-case-stamp]', folder), select('[data-case-cover]', folder)))
-  const timeline = revealTimeline(grid).add(paperIn(folders, { rest: 0 }))
-  stamps.forEach((stamp, index) => timeline.add(stamp, `-=${index === 0 ? 0.2 : 0.6 - motion.stampStagger}`))
+  const stamps = selectAll('[data-case-stamp]', grid)
+  revealTimeline(grid)
+    .add(paperIn(folders, { rest: 0 }))
+    .add(stampDown(stamps, { stagger: motion.stampStagger }), '-=0.2')
 
   initCaseModal(grid)
 }

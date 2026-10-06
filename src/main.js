@@ -1,7 +1,8 @@
-import '@fontsource/literata/600.css'
-import '@fontsource/manrope/400.css'
-import '@fontsource/manrope/600.css'
-import '@fontsource/ibm-plex-mono/400.css'
+import '@fontsource/plus-jakarta-sans/400.css'
+import '@fontsource/plus-jakarta-sans/500.css'
+import '@fontsource/plus-jakarta-sans/700.css'
+import '@fontsource/plus-jakarta-sans/800.css'
+import '@fontsource/jetbrains-mono/400.css'
 import '@fontsource/caveat/600.css'
 import 'lenis/dist/lenis.css'
 import './styles/tokens.css'
@@ -17,7 +18,7 @@ import { TextPlugin } from 'gsap/TextPlugin'
 import { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
 
-import { bindAnchorLinks, startSmoothScroll } from './scroll.js'
+import { bindAnchorLinks, resetToTop, startSmoothScroll } from './scroll.js'
 import { initSectionTitles } from './sections/section-titles.js'
 import { runPreloader } from './sections/preloader.js'
 import { initHeader } from './sections/header.js'
@@ -37,7 +38,10 @@ import { initNotFound, initPrivacy, initThanks } from './pages/subpages.js'
 
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, Flip, TextPlugin, Draggable, InertiaPlugin)
 
+resetToTop()
+
 const bootLanding = () => {
+  resetToTop()
   startSmoothScroll()
   bindAnchorLinks()
   initHeader()
@@ -60,3 +64,4 @@ const bootLanding = () => {
 }
 
 document.fonts.ready.then(bootLanding)
+window.addEventListener('load', () => ScrollTrigger.refresh())

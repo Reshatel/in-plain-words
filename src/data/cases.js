@@ -1,7 +1,16 @@
+export const caseCategories = [
+  { id: 'personal', label: 'Personal' },
+  { id: 'business', label: 'Business' },
+  { id: 'court', label: 'Court & claims' }
+]
+
+export const caseCategoryLabel = (categoryId) => caseCategories.find((category) => category.id === categoryId)?.label ?? ''
+
 export const closedCases = [
   {
     id: 'case-0412',
     number: '0412',
+    categoryId: 'personal',
     practiceId: 'property',
     stamp: 'Won',
     situation: 'A seller vanished with the deposit two weeks before closing.',
@@ -15,6 +24,7 @@ export const closedCases = [
   {
     id: 'case-0388',
     number: '0388',
+    categoryId: 'personal',
     practiceId: 'family',
     stamp: 'Settled',
     situation: 'Divorce after 14 years, a shared flat and two kids.',
@@ -28,6 +38,7 @@ export const closedCases = [
   {
     id: 'case-0451',
     number: '0451',
+    categoryId: 'business',
     practiceId: 'ip',
     stamp: 'Registered',
     situation: 'A competitor launched an app with the same name.',
@@ -41,6 +52,7 @@ export const closedCases = [
   {
     id: 'case-0367',
     number: '0367',
+    categoryId: 'business',
     practiceId: 'business',
     stamp: 'Won',
     situation: 'A client refused to pay a design studio for six months of work.',
@@ -54,6 +66,7 @@ export const closedCases = [
   {
     id: 'case-0429',
     number: '0429',
+    categoryId: 'court',
     practiceId: 'consumer',
     stamp: 'Won',
     situation: 'A furniture store kept “losing” a refund request for a broken sofa.',
@@ -67,6 +80,7 @@ export const closedCases = [
   {
     id: 'case-0395',
     number: '0395',
+    categoryId: 'court',
     practiceId: 'court',
     stamp: 'Won',
     situation: 'An employer fired a manager without notice after she asked for a raise.',

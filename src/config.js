@@ -1,12 +1,12 @@
 export const motion = {
   ease: 'power3.out',
   paperEase: 'back.out(1.4)',
-  stampEase: 'power4.in',
+  stampEase: 'power3.out',
   duration: 0.9,
   fadeDuration: 0.6,
   stagger: 0.08,
   stampStagger: 0.15,
-  stampDuration: 0.25,
+  stampDuration: 0.35,
   strikeDuration: 0.5,
   markerDuration: 0.6,
   scribbleDuration: 0.8,
@@ -30,7 +30,6 @@ export const office = {
 }
 
 export const storageKeys = {
-  visited: 'inPlainWords.visited',
   calculator: 'inPlainWords.calculator',
   estimate: 'inPlainWords.estimate',
   application: 'inPlainWords.application'

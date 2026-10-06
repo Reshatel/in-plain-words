@@ -19,9 +19,3 @@ export const paperIn = (targets, { rest = restingTilt, ...vars } = {}) => {
     { autoAlpha: 1, y: 0, rotation: rest, duration: motion.duration, ease: motion.paperEase, stagger: motion.stagger, ...vars }
   )
 }
-
-export const shakeSheet = (sheet) => {
-  if (prefersReducedMotion) return gsap.timeline()
-
-  return gsap.to(sheet, { keyframes: { x: [0, -6, 5, -3, 2, 0], easeEach: 'none' }, duration: 0.35 })
-}

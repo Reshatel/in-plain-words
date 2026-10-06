@@ -23,6 +23,13 @@ const termCardMarkup = ({ term, plain, example }, index) => `
     </button>
   </li>`
 
+const equalizeCardHeights = (cards) => {
+  const inners = cards.map((card) => select('[data-term-flip]', card))
+  inners.forEach((inner) => (inner.style.minHeight = ''))
+  const tallest = Math.max(...inners.map((inner) => inner.offsetHeight))
+  inners.forEach((inner) => (inner.style.minHeight = `${tallest}px`))
+}
+
 const fanIn = (cards) => {
   if (prefersReducedMotion) return gsap.fromTo(cards, { autoAlpha: 0 }, { autoAlpha: 1, duration: motion.fadeDuration, stagger: motion.stagger })
 
@@ -42,6 +49,13 @@ export const initTranslator = () => {
 
   const cards = selectAll('[data-term-card]', grid)
   const translateAll = select('[data-translate-all]')
+  let pendingResize = null
+
+  equalizeCardHeights(cards)
+  window.addEventListener('resize', () => {
+    pendingResize?.kill()
+    pendingResize = gsap.delayedCall(0.2, equalizeCardHeights, [cards])
+  })
   const flipDuration = prefersReducedMotion ? 0 : motion.flipDuration
 
   selectAll('[data-term-marker]', grid).forEach((marker) => gsap.set(marker, { backgroundSize: '0% 100%' }))

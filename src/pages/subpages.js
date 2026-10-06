@@ -42,14 +42,14 @@ export const initThanks = () => {
       <p class="legal">Term: ${escapeHtml(estimate.term)}</p>`
   }
 
-  gsap.timeline({ delay: 0.2 }).add(paperIn(sheet, { rest: -0.5 })).add(stampDown(select('[data-thanks-stamp]', sheet), sheet), '-=0.3')
+  gsap.timeline({ delay: 0.2 }).add(paperIn(sheet, { rest: -0.5 })).add(stampDown(select('[data-thanks-stamp]', sheet)), '-=0.3')
 }
 
 export const initNotFound = () => {
   const sheet = select('[data-not-found]')
   if (!sheet) return
 
-  gsap.timeline({ delay: 0.2 }).add(paperIn(sheet, { rest: 1 })).add(stampDown(select('[data-not-found-stamp]', sheet), sheet), '-=0.3')
+  gsap.timeline({ delay: 0.2 }).add(paperIn(sheet, { rest: 1 })).add(stampDown(select('[data-not-found-stamp]', sheet)), '-=0.3')
 }
 
 export const initPrivacy = () => {

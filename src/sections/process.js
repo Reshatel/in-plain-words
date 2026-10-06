@@ -16,22 +16,35 @@ const stepMarkup = ({ title, text }, index) => `
 const restingTilt = (index) => [-2, 1.5, -1, 2.5][index % 4]
 
 const buildScrubbedPath = (track, reveal, steps) => {
-  const timeline = gsap.timeline({
-    scrollTrigger: { trigger: track, start: 'top 70%', end: 'bottom 60%', scrub: 0.6 }
-  })
-
-  timeline.fromTo(reveal, { drawSVG: '0%' }, { drawSVG: '100%', duration: 1, ease: 'none' }, 0)
-  steps.forEach((step, index) => {
-    const arrival = (index / Math.max(steps.length - 1, 1)) * 0.92
-    timeline.fromTo(
+  const stickers = steps.map((step, index) =>
+    gsap.fromTo(
       step,
-      { autoAlpha: 0, scale: 1.2, rotation: restingTilt(index) * 5, y: -20 },
-      { autoAlpha: 1, scale: 1, rotation: restingTilt(index), y: 0, duration: 0.08, ease: motion.paperEase },
-      arrival
+      { autoAlpha: 0, y: 24, scale: 0.96, rotation: restingTilt(index) },
+      { autoAlpha: 1, y: 0, scale: 1, rotation: restingTilt(index), duration: 0.8, ease: 'power2.out', paused: true, immediateRender: true }
     )
-  })
+  )
+  const arrivals = steps.map((_, index) => (index / Math.max(steps.length - 1, 1)) * 0.9)
 
-  return timeline
+  gsap.fromTo(
+    reveal,
+    { drawSVG: '0%' },
+    {
+      drawSVG: '100%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: track,
+        start: 'top 70%',
+        end: 'bottom 60%',
+        scrub: 1,
+        onUpdate: (self) => {
+          arrivals.forEach((arrival, index) => {
+            if (self.progress < arrival || stickers[index].progress() > 0) return
+            stickers[index].play()
+          })
+        }
+      }
+    }
+  )
 }
 
 export const initProcess = () => {
